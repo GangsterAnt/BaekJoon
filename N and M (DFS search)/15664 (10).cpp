@@ -21,7 +21,7 @@ int main()
 
 	sort(arr, arr + n);
 
-	for (int i = 0; i < n-1; i++)
+	for (int i = 0; i < n - 1; i++)
 	{
 		if (arr[i] == arr[i + 1])
 		{
@@ -38,6 +38,13 @@ int main()
 
 	}
 
+	//for (int i = 0; i < n; i++)
+	//	cout << arr[i] << ' ';
+	//cout << '\n';
+	//for (int i = 0; i < n; i++)
+	//	cout << visited[i] << ' ';
+	//cout << '\n';
+
 	search(m, n, 0, 0);
 	return 0;
 }
@@ -48,10 +55,22 @@ void search(int m, int n, int now, int min)
 	{
 		for (int i = 0; i < m; i++)
 		{
-
 			cout << temp[i] << ' ';
-
 		}
 		cout << '\n';
+	}
+	else
+	{
+		for (int i = min; i < n; i++)
+		{
+			if (visited[i] != 0)
+			{
+				temp[now] = arr[i];
+				visited[i] -= 1;
+				search(m, n, now + 1, i ); // 중복이 가능하므로... i 을 전달 ( not i+1)
+				visited[i] += 1;
+			}
+		}
+		
 	}
 }
