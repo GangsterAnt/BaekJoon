@@ -9,7 +9,7 @@
 //{
 //	int m, n;
 //
-//	cin >> n >> m;	//N Àº ÃÖ´ë°ª  M Àº ¼ö¿­ÀÇ ±æÀÌ
+//	cin >> n >> m;	//N ì€ ìµœëŒ€ê°’  M ì€ ìˆ˜ì—´ì˜ ê¸¸ì´
 //		
 //	search(0,1,n,m);
 //	return 0;
@@ -27,14 +27,14 @@
 //	}
 //	else
 //	{
-//		for (int i = min; i <= max; i++)		// arr ÀÇ Ã¹ ¿ø¼Ò ÀÌÀü°ªÀ» ¹«½ÃÇÏ±â À§ÇØ lower bound minÀ» ¼³Á¤ÇØÁØ´Ù.
+//		for (int i = min; i <= max; i++)		// arr ì˜ ì²« ì›ì†Œ ì´ì „ê°’ì„ ë¬´ì‹œí•˜ê¸° ìœ„í•´ lower bound minì„ ì„¤ì •í•´ì¤€ë‹¤.
 //		{
 //			if (!visited[i])
 //			{
 //				arr[now] = i;
-//				visited[i] = true;	// ´ÙÀ½ ¼ıÀÚ index i+1 ¿¡¼­´Â true ¿©¾ß ÇÏÁö¸¸...
+//				visited[i] = true;	// ë‹¤ìŒ ìˆ«ì index i+1 ì—ì„œëŠ” true ì—¬ì•¼ í•˜ì§€ë§Œ...
 //				search(now + 1,i+1, max, depth);
-//				visited[i] = false;		//Àç±Í°¡ ³¡³­µÚ¿¡´Â ´Ù½Ã false ·Î º¯°æ µÇ¾î¾ß ÇÏ¹Ç·Î....
+//				visited[i] = false;		//ì¬ê·€ê°€ ëë‚œë’¤ì—ëŠ” ë‹¤ì‹œ false ë¡œ ë³€ê²½ ë˜ì–´ì•¼ í•˜ë¯€ë¡œ....
 //			}
 //
 //		}
