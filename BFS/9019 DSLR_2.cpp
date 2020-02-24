@@ -60,11 +60,10 @@ int main()
 		
 		/*cout << "Graph is Done\n";
 		map<int, char> ::iterator iter;
-
 		for (iter = tosort.begin(); iter != tosort.end(); iter++)
 		cout << "[" << iter->first << " , " << iter->second << " ]  \n";*/
 	
-		cout << tosort[fin] << '\n';
+		//cout << tosort[fin] << '\n';
 	}
 
 	return 0;
@@ -75,27 +74,30 @@ void bfs(int start, int fin)
 {
 	
 
-	queue<int> q;
-	q.push(start);
+	queue<pair< int,string>> q;
+	q.push(make_pair(start,""));
 	visited[start] = true;
 
 	while (!q.empty())
 	{
-		const int here = q.front(); q.pop();
+		const int here = q.front().first;
+		string words = q.front().second;
+		q.pop();
 		int temp;
 
 		if (here == fin)
 		{
+			cout << words << '\n';
 			return;
 		}
+
 		//D
 			temp = (here * 2 % 10000);
 
 			if (!visited[temp])
 			{
 				visited[temp] = true;
-				tosort[temp] = tosort[here] +  'D';
-				q.push(temp);
+				q.push(make_pair(temp, words + "D"));
 
 			}
 
@@ -110,8 +112,7 @@ void bfs(int start, int fin)
 			if (!visited[temp])
 			{
 				visited[temp] = true;
-				tosort[temp] = tosort[here] + 'S';
-				q.push(temp);
+				q.push(make_pair(temp, words + "S"));
 
 			
 
@@ -122,8 +123,7 @@ void bfs(int start, int fin)
 			if (!visited[temp])
 			{
 				visited[temp] = true;
-				tosort[temp] = tosort[here] + 'L';
-				q.push(temp);
+				q.push(make_pair(temp, words + "L"));
 
 			
 			}
@@ -133,8 +133,7 @@ void bfs(int start, int fin)
 			if (!visited[temp])
 			{
 				visited[temp] = true;
-				tosort[temp] = tosort[here] + 'R';
-				q.push(temp);
+				q.push(make_pair(temp, words + "R"));
 
 				
 			}
