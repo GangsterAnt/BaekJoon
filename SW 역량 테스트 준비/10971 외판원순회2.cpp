@@ -10,6 +10,7 @@ int result_min = 99999999;
 vector<int> path;
 
 
+
 void dfs(const vector<vector<int>> & adj, vector <bool> & visited, int now, int depth, int here)
 {
 	if (depth == now)
@@ -43,18 +44,20 @@ void dfs(const vector<vector<int>> & adj, vector <bool> & visited, int now, int 
 		path.pop_back();
 	}
 }
-void Graph(const vector<vector<int>> & adj, vector <bool> & visited, int now, int depth)
-{
-	
-	for (int here = 0; here < depth; ++here)
-	{
-		dfs(adj, visited, now, depth, here);
-	}
-	
-}
+//void Graph(const vector<vector<int>> & adj, vector <bool> & visited, int now, int depth)
+//{
+//	
+//	for (int here = 0; here < depth; ++here)
+//	{
+//		dfs(adj, visited, now, depth, here);
+//	}
+//	
+//}
 
 int main()
 {
+    cin.tie(NULL);
+	ios::sync_with_stdio(false);
 	int c;
 	cin >> c;
 
@@ -65,7 +68,8 @@ int main()
 		for (int x = 0; x < c; ++x)
 			cin >> adj[y][x];
 
-	Graph(adj, visited,0, c);
+	//Graph(adj, visited,0, c);
+	dfs(adj, visited, 0, c, 0);
 	cout << result_min << '\n';
 
 	return 0;
