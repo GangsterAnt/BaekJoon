@@ -68,7 +68,9 @@ int main()
 		for (int x = 0; x < c; ++x)
 			cin >> adj[y][x];
 
-	//Graph(adj, visited,0, c);
+	// dfs 시작점을 0 으로 고정해도 되는이유 : 어차피 시작점으로 돌아온다는것은 Cycle 이 존재한다는 뜻이므로
+	// 시작점이어디든 상관 없다 e.g ) 1234 = 2341 = 3412 = 4123
+	
 	dfs(adj, visited, 0, c, 0);
 	cout << result_min << '\n';
 
