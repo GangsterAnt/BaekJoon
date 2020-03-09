@@ -13,9 +13,9 @@ void dfs(const vector<vector<int>>& adj, int depth, int start,int color)
 {
 	visited[start] = color;
 
-	for (int i = 0; i < adj[start].size(); ++i)
+	for (int i = 0; i < adj[start].size(); ++i)	// i 는 start의 간선들의 번호
 	{
-		int next = adj[start][i];
+		int next = adj[start][i];	//next 는 vertex 번호
 
 		if (visited[next] == 0)
 		{
@@ -48,7 +48,7 @@ void solution(const vector< vector<int>>& adj, int depth)
 		{
 			//cout << i << " Is Wrong!!\n";
 			fin = 0;
-			continue;
+			break;
 		}
 	}
 
@@ -70,7 +70,7 @@ int main()
 
 	int c, v, e;
 	cin >> c;
-	while (c) 
+	while (c--) 
 	{
 		cin >> v >> e;
 		adj = vector< vector<int>>(v + 1, vector<int>(0));
@@ -100,7 +100,7 @@ int main()
 			adj.clear();
 			memset(visited, 0, sizeof(visited));
 		}
-		c--;
+		
 	}
 	return 0;
 }
