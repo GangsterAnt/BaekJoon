@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include<stdio.h>
+#include <queue>
 
 using namespace std;
 
@@ -39,6 +40,38 @@ int dfs(int y, int x)
 	return ret;
 }
 
+int bfs(int y, int x)
+{
+	int ret = 1;
+	visited[y][x] = 1;
+	queue< pair<int, int>> q;
+	q.push(make_pair(y, x));
+
+	while (!q.empty())
+	{
+		int ty = q.front().first; int tx = q.front().second;
+		q.pop();
+
+		for (int i = 0; i < 4; ++i)
+		{
+			int ny = ty + dy[i]; int nx = tx + dx[i];
+
+			if (ny < 0 || ny >= n || nx < 0 || nx >= n)	// 좌표 유효성 체크
+				continue;
+
+			if (adj[ny][nx] && !visited[ny][nx])	// 집이 있고 (adj) 방문x시 (!visited)
+			{
+				ret++;
+				q.push(make_pair(ny, nx));
+				visited[ny][nx] = 1;
+			}
+		}
+	}
+	
+
+	return ret;
+}
+
 void solution()
 {
 	int temp;
@@ -48,7 +81,8 @@ void solution()
 			if (adj[y][x] && !visited[y][x])
 			{
 				//cout << "Calling dfs( " << y << " " << x << " ) \n";
-				temp = dfs(y, x);
+				temp = bfs(y, x);
+				//temp =dfs(y,x);
 				area.push_back(temp);
 			}
 		}
@@ -72,8 +106,8 @@ int main()
 
 	for (int y = 0; y < n; ++y)
 		for (int x = 0; x < n; ++x)
-			scanf("%1d", &adj[y][x]);	//for online Judgement
-			//scanf_s("%1d", &adj[y][x]); visual studio
+			//scanf("%1d", &adj[y][x]);	//for online Judgement
+			scanf_s("%1d", &adj[y][x]); //visual studio
 			
 	//cout << "Insert Is Done! \n";
 	solution();
