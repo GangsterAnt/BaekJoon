@@ -43,7 +43,7 @@ int main()
 	for (int i = 0; i <= 9; ++i)
 	{
 		temp += dp[n][i];
-		temp %= MOD;
+		temp %= MOD;	//For 루프 밖에서 MOD 연산시 + 를 10번하면서 오버플로우가 이미 생겨버림.. 각 연산 마다 
 	}
 
 	
