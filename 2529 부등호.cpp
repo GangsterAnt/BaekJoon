@@ -1,7 +1,6 @@
 //https://www.acmicpc.net/problem/2529
 /*
 자리수 조심 9876543210 (98억) 은 int 의 범위 (21억), unsigned 의 범위( 42억) 을 넘어간다 
-
 MAX, MIN 모두 long long 으로
 */
 #include <iostream>
@@ -53,18 +52,21 @@ void dfs(int depth ,int now)
 
 		bool flag = false;
 
-		/*switch (A[now - 1])
+		switch (A[now - 1])
 		{
 			case '<':
-				flag = v[now - 1] < i ? 1 : 0;
+				flag = (v[now - 1] < i) ? true : false;
+				break;
 			case '>':
-				flag = v[now - 1] > i ? 1 : 0;
-		}*/
+				flag = (v[now - 1] > i) ? true : false;
+				break;
 
-		if (A[now - 1] == '<' && v[now - 1] < i)
+		}
+
+		/*if (A[now - 1] == '<' && v[now - 1] < i)
 			flag = true;
 		else if (A[now - 1] == '>' && v[now - 1] > i)
-			flag = true;
+			flag = true;*/
 
 		if (!flag)
 			continue;
