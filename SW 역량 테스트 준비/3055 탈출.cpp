@@ -85,6 +85,8 @@ void bfs(int r, int c, pair<int,int> start, pair<int,int> end)
 			if (adj[ny][nx] == 'X') //예외조건 : 돌
 				continue;
 			if (water[ny][nx] != -1 && visited[temp_y][temp_x] + 1 >= water[ny][nx])
+				//물이 차는 지역이여야 하고 ( water[ny][nx] != -1 없을시.. visited[][] ==-1 이랑 꼬일수도
+				// 최단거리가 물이 차는 시간 "미만"이어야 한다 " 둘이 같은 시간이 걸릴경우.. 물이 차는곳으로 이동하는것이다.
 				continue;
 
 			visited[ny][nx] = visited[temp_y][temp_x]+1;
