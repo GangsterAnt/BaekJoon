@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <iomanip>
+#include <bitset>
 
 using namespace std;
 
@@ -53,14 +55,49 @@ bool check_dir(const vector<int>& dir) //상하좌우 vaild 체크
 	}
 	return true;
 }
-
-
+//
+//pair<bool, bool> tilt(vector<vector<char>> &a, int k,pair<int,int>& cornet) {
+//	int x = cornet.first; int y = cornet.second;
+//	if (a[x][y] == '.') return make_pair(false, false);
+//	int n = a.size();
+//	int m = a[0].size();
+//	bool moved = false;
+//	while (true) {
+//		int nx = x + dx[k];
+//		int ny = y + dy[k];
+//		if (nx < 0 || nx >= n || ny < 0 || ny >= m) 
+//		{
+//			return make_pair(moved, false);
+//		}
+//		if (a[nx][ny] == '#') 
+//		{
+//			return make_pair(moved, false);
+//		}
+//		else if (a[nx][ny] == 'R' || a[nx][ny] == 'B') {
+//			return make_pair(moved, false);
+//		}
+//		else if (a[nx][ny] == '.') 
+//		{
+//			swap(a[nx][ny], a[x][y]);
+//			x = nx;
+//			y = ny;
+//			cornet = make_pair(x, y);
+//			moved = true;
+//		}
+//		else if (a[nx][ny] == 'O') {
+//			a[x][y] = '.';
+//			moved = true;
+//			return make_pair(moved, true);
+//		}
+//	}
+//	return make_pair(false, false);
+//}
 
 pair<bool, bool> tilt(vector<vector<char>> &v,int k, pair<int,int>& cornet)
 {
 	//cornet 은 temp_red or temp_blue;
 	int y = cornet.first; int x = cornet.second;
-
+	int n = v.size();	int m = v[0].size();
 	if (v[y][x] == '.') // . 이면 읨이ㅓㅄ다
 		return make_pair(false, false);
 
@@ -69,6 +106,9 @@ pair<bool, bool> tilt(vector<vector<char>> &v,int k, pair<int,int>& cornet)
 	{
 		int ny = y + dy[k]; int nx = x + dx[k];
 		
+		if (ny < 0 || nx < 0 || ny >= n || nx >= m)
+			return make_pair(move, false);
+
 
 		//히히.. 못가!
 		if (v[ny][nx] == '#' || v[ny][nx] == 'R' || v[ny][nx] == 'B')
@@ -77,7 +117,8 @@ pair<bool, bool> tilt(vector<vector<char>> &v,int k, pair<int,int>& cornet)
 		{
 			swap(v[ny][nx], v[y][x]);
 			y = ny; x = nx; //함수 내부의 while 문을 위한 update
-			cornet = make_pair(ny, nx);	// check 함수에서 바뀐 좌표가 필요.
+			cornet = make_pair(y, x);	// check 함수에서 바뀐 좌표가 필요.
+			move = true;
 		}
 		else if (v[ny][nx] == 'O')
 		{
@@ -88,6 +129,8 @@ pair<bool, bool> tilt(vector<vector<char>> &v,int k, pair<int,int>& cornet)
 		
 
 	}
+
+	return make_pair(false, false);
 }
 
 int check(vector <vector<char>> v, vector<int> dir)
@@ -95,6 +138,10 @@ int check(vector <vector<char>> v, vector<int> dir)
 	int ans = 0;
 	auto temp_red = __red;
 	auto temp_blue = __blue;
+
+	pair<bool,bool> Red_Done = make_pair(false, false);
+	pair<bool,bool> Blue_Done = make_pair(false, false);
+
 	for (int k : dir)
 	{
 		ans++;
@@ -102,14 +149,17 @@ int check(vector <vector<char>> v, vector<int> dir)
 
 		while (1)
 		{
-			auto p1 = tilt(v, k, temp_red);
-			auto p2 = tilt(v, k, temp_blue);
+			Red_Done = tilt(v, k, temp_red);
+			Blue_Done = tilt(v, k, temp_blue);
 
-			if (p1.first == false && p2.first == false)	//둘다 move 가 false ( 움직이지 않았다면) break;
+			if (Red_Done.first == false && Blue_Done.first == false)	//둘다 move 가 false ( 움직이지 않았다면) break;
 				break;
 
-			if (p1.second) hole1 = true;
-			if (p2.second) hole2 = true;
+			
+			if (Blue_Done.second) 
+				{ hole2 = true; break; }
+			if (Red_Done.second) 
+				{ hole1 = true; break; }
 		}
 
 		
@@ -137,7 +187,9 @@ int main()
 			if (v[i][j] == 'B')
 				__blue = make_pair(i, j);
 		}
+	
 
+	
 	int ans = -1;
 
 	for (int i = 0; i < (1 << 20); ++i)
@@ -149,8 +201,11 @@ int main()
 		if (cnt == -1)
 			continue;
 
-		if (ans == -1|| ans > cnt)
+		if (ans == -1 || ans > cnt)
+		{
+			//cout<<bitset<20>(i)<< " Ans : ";
 			ans = cnt;
+		}
 
 
 	}
