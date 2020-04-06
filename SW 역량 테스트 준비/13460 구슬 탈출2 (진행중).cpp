@@ -18,8 +18,8 @@ int dx[] = { 0,0,-1,1 };
 vector<int> direction(int k)	// 4비트씩 끊자.
 {
 	vector<int> ret;
-	for (int i = 0; i<10; ++i)
-	{
+	for (int i = 0; i<10; ++i)	//while( i>0) 으로 할시 10개가 안들어간다 e.g) 0011 1111 1111 1111 1111은 
+	{				//  11 9개만 들어간 vector를 리턴한다. 0도 의미있는 방향값이다!
 		int temp = (k & 3);
 		ret.push_back(temp);
 		k >>= 2;
