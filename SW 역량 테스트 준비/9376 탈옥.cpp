@@ -98,7 +98,10 @@ int main()
 		auto p_01 = bfs(v,prisoner[0].first, prisoner[0].second);
 		auto p_02 = bfs(v,prisoner[1].first, prisoner[1].second);
 		
-	/*	print(v);
+	/*	graph01 ,p_01, p_02 는 각각 감옥의 외부 (0,0) 에서, 죄수 1, 2의 모든 node 에 대한 거리정보.
+		i 임의의 좌표 i,j에 대해서 graph1[i][j] + p_01[i][j] + p_02[i][j] 의 값은 죄수 1과 2과 i,j 에서 만나고
+		i (p_01[i][j] + p_02[i][j]) 그 좌표에서 0,0 까지의 거리와 같다. ( 양방향 그래프이므로 00 -> ij 의 값은 ij -> 00 과 같다
+		print(v);
 		print(graph1);
 		print(p_01);
 		print(p_02);*/
