@@ -30,8 +30,8 @@ int dp(vector<vector<int>> & candy, vector<vector<int>> & map)
 			{
 				/*
 					대각선은 처리해주지 않아도 된다 어차피 대각선 <= 오른쪽으로 갔다 아래로간거 
-														대각선 <= 아래로갔다 오른쪽으로 간거
-														이기 때문에..
+									    대각선 <= 아래로갔다 오른쪽으로 간거
+									    이기 때문에..
 				*/
 				int ny = i + dy[dir];
 				int nx = j + dx[dir];
