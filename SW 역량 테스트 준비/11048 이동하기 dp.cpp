@@ -5,8 +5,8 @@
 #include <vector>
 #include <algorithm>
 
-int dy[] = { -1,-1,0 };
-int dx[] = { 0,-1,-1 }; //위 대각 좌
+int dy[] = { -1,0,-1 };
+int dx[] = { 0,-1,-1 }; //위 좌 대각
 using namespace std;
 int dp(vector<vector<int>> & candy, vector<vector<int>> & map)
 {
@@ -26,8 +26,13 @@ int dp(vector<vector<int>> & candy, vector<vector<int>> & map)
 	{
 		for (int j = 1; j < m; ++j)
 		{
-			for (int dir = 0; dir < 3; ++dir)
+			for (int dir = 0; dir < 2; ++dir)
 			{
+				/*
+					대각선은 처리해주지 않아도 된다 어차피 대각선 <= 오른쪽으로 갔다 아래로간거 
+														대각선 <= 아래로갔다 오른쪽으로 간거
+														이기 때문에..
+				*/
 				int ny = i + dy[dir];
 				int nx = j + dx[dir];
 				map[i][j] = max(map[i][j], map[ny][nx]);
@@ -48,6 +53,8 @@ int dp(vector<vector<int>> & candy, vector<vector<int>> & map)
 }
 int main()
 {
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
 	int n, m;
 	cin >> n >> m;
 	vector< vector<int>> candy(n, vector<int>(m, 0));
