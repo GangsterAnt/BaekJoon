@@ -1,6 +1,11 @@
 //https://www.acmicpc.net/problem/14890
 //https://code.plus/lecture/351
+/*
+	asd문제에서 묻는건 한번에 완성된 n X n 맵에서 완성된 길이 아니라
+	asd경사로 하나를 지나갈때 놓고 지나가면 회수하는 방식으로 진행된다고 봐야한다.
+	
 
+*/
 #include <iostream>
 #include <vector>
 
