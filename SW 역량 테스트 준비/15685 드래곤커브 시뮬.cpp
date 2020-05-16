@@ -1,6 +1,20 @@
 //https://www.acmicpc.net/problem/15685
 //https://code.plus/lecture/351
+/*
+	generation 이 증가함에 따라 direction 의 상관관계를 봐야한다.
+	( 그려보면 빠르다 )
+	 0 세대가 오른쪽이라면 1세대는 위
+			 왼쪽				아래
+			 위					왼
+			 아래				오른쪽 으로 진행된다.
 
+	n 세대의 드래곤 커브는 n-1 세대의 마지막 점에서 시작하므로.. 그려나가야하는 점들은
+	n-1 세대에서  찍힌 점의 역순으로 찍어야 한다. 
+	
+	for 루프를 역순으로 돌아서 방향들을 1개의 벡터에 저장
+	방향을 기반으로 다음 좌표들을 계산해 나아가자.
+	
+*/
 #include<iostream>
 #include <vector>
 
