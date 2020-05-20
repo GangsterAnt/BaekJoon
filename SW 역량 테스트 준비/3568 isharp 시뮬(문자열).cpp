@@ -19,9 +19,11 @@ vector<string> tokken(string & s)
 	{
 		if (s[i] == ' ' || s[i] == ',' || s[i] == ';')
 		{
-			if(tmp.size() >0)
+			if(tmp.size() >0)		//비었는데도 추가할수 있으므로.. 없을시 공백 야기함
 				ret.push_back(tmp);
 			tmp = "";
+			// ='\0' 이 아닌 이유는 tmp 가 string 이므로 끝에 널문자가 없다.
+			// char []  과 다르다.
 		}
 		else
 			tmp += s[i];
