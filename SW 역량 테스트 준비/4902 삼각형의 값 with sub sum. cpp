@@ -1,6 +1,6 @@
 //https://www.acmicpc.net/problem/4902
 //http://codeplus.codes/fc4635361cd3470ea1bd66a11ed91f1a
-//틀렸습니다.
+
 #include<iostream>
 #include <vector>
 #include <algorithm>
@@ -82,7 +82,7 @@ int bottomup(vector<vector<int>>& v, vector<vector<int>> & subsum, int y, int x)
 		if (left < 0)
 			break;
 
-		tmp += (subsum[i][right] - subsum[i][left]);
+		tmp += (subsum[i][right] - subsum[i][left-1]);
 		//한층의 연산이 끝나면 비교후 저장
 		ans = max(tmp, ans);
 	}
