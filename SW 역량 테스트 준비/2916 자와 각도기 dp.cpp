@@ -1,6 +1,6 @@
 //https://www.acmicpc.net/problem/2916
 //http://codeplus.codes/aff19293ab874affb8d544132acfc7d7
-
+// 백준에서 relase 모드로 실행시키는데 bool 배열을 초기화 하지 않아서 문제가 생겼음.
 #include <iostream>
 #include <cstring>
 
