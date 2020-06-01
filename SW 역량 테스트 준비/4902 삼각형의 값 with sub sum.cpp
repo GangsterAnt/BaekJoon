@@ -2,6 +2,7 @@
 //http://codeplus.codes/fc4635361cd3470ea1bd66a11ed91f1a
 // ANS 가 0 으로 초기화되면 모든 삼각형의 값이 음수인경우 답이 0이 되는경우 존재.
 // 삼각형 row 는 400  값의 절대값은 1000 미만이라 하였으므로... 400 * 400 * 1000 * -1 이 lowerbound임 200만 더줘서 -1800만을 lowerbound로 설정하고 구현
+
 #include<iostream>
 #include <vector>
 #include <algorithm>
