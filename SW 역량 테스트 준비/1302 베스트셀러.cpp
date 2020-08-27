@@ -18,7 +18,7 @@ int main()
 	string s;
 	map<string, int> m;
 	vector<string> keychain;
-	vector<string>ans;
+	ans;
 
 	// O(1000) == O(n)
 	for (int i = 0; i < n; ++i)
@@ -45,11 +45,12 @@ int main()
 	{
   //각 key 에 대한 value 가 max 와 같다면 최대 판매책이다. 정답에 추가.
 		if (m[keychain[i]] == max)
-			ans.push_back(keychain[i]);
+			{
+        if (ans.empty() || ans > keychain[i])
+				ans = keychain[i];
+		  }
 	}
 
-	sort(ans.begin(), ans.end());
-	cout << ans[0]<<'\n';
-	
+	cout << ans << '\n';
 	return 0;
 }
