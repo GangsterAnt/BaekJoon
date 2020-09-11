@@ -1,0 +1,73 @@
+#include <string>
+#include <vector>
+#include <cstring>
+//https://programmers.co.kr/learn/courses/30/lessons/42839
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool prime[10000000];
+bool visited[10000000];
+bool v[7];
+int dfs(const string &str, string &s, int now, int depth)
+{
+
+
+	if (now == depth)
+	{
+		//cout << "String s:" << s << '\n';
+		if (prime[stoi(s)] && !visited[stoi(s)])
+		{
+			return 1;
+		}
+
+	}
+
+	int ret = 0;
+
+	for (int i = 0; i < str.length(); ++i)
+	{
+		if (!v[i])
+		{
+			v[i] = true;
+			s += str[i];
+			//cout <<"String s:"<< s << '\n';
+			if (prime[stoi(s)] && !visited[stoi(s)])
+			{
+				//cout << s << '\n';
+				ret++;
+				visited[stoi(s)] = true;
+			}
+
+			ret+=dfs(str, s, now + 1, depth);
+			v[i] = false;
+			s.erase(s.length() - 1, 1);
+		}
+	}
+
+	return ret;
+}
+
+int solution(string numbers) {
+
+	int answer = 0;
+	memset(prime, true, sizeof(prime));
+	memset(visited, false, sizeof(visited));
+	memset(v, false, sizeof(v));
+	prime[0] = prime[1] = false;
+
+	//에라토스테네스의 체
+	for (int i = 2; i<10000000; ++i)
+	{
+		if (prime[i])
+			for (int j = 2; j*i <10000000; ++j)
+				prime[i *j] = false;
+	}
+
+	string s = "";
+
+	answer = dfs(numbers, s, 0, numbers.size());
+
+	return answer;
+}
