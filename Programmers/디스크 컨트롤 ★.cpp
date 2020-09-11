@@ -133,3 +133,70 @@ int main()
 
 	return 0;
 }
+/* 쳐낼거 쳐낸 간결 
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <queue>
+using namespace std;
+
+bool compare(vector<int>a, vector<int> b)
+{
+	return a[0]< b[0];
+}
+
+struct cmp {
+
+	bool operator()(vector<int> a, vector<int>b)
+	{
+		return a[1] > b[1];
+	}
+};
+
+int solution(vector<vector<int>> jobs) {
+	int answer = 0; int time = 0; int index = 0; int size = jobs.size();
+	sort(jobs.begin(), jobs.end(), compare);
+	priority_queue < vector<int>, vector<vector<int>>, cmp> pq;
+
+	while (1)
+	{
+		while (index < size)
+		{
+			if (jobs[index][0] <= time)
+			{
+				pq.push(jobs[index]);
+				index++;
+			}
+			else
+				break;
+		}
+
+		if (pq.empty())
+		{
+			if (index < size)
+			{
+				time = jobs[index][0];
+				continue;
+			}
+
+			else
+				break;
+		}
+
+		else
+		{
+			auto t = pq.top();
+			pq.pop();
+
+			answer += t[1] + time - t[0];
+			time += t[1];
+		}
+
+
+	}
+
+
+	return answer/size;
+}
+
+*/
